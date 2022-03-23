@@ -28,6 +28,12 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 //single post
 Route::get('/blog/single-blog-post', [BlogController::class, 'show'])->name('blog.show');
 
+// Create Post
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+
+
+// Store Post in the data base
+Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
 //About page
 Route::get('/about', function(){
@@ -37,3 +43,9 @@ Route::get('/about', function(){
 
 //Contact page
 Route::get('/contact', [WelcomeController::class, 'contact'])->name('contact.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
